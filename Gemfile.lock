@@ -227,6 +227,7 @@ DEPENDENCIES
   axlsx_rails
   bootsnap
   capybara
+  caxlsx
   debug
   importmap-rails
   jbuilder
