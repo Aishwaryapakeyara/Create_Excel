@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_name: MyString
+  invoice_no: MyString
+  payment_mode: MyString
+  payment_date: 2022-07-26 17:33:24
+  y/n: false
+  comm: MyString
+  released_before: MyString
+  released_now: MyString
+  on_hold: MyString
+
+two:
+  company_name: MyString
+  invoice_no: MyString
+  payment_mode: MyString
+  payment_date: 2022-07-26 17:33:24
+  y/n: false
+  comm: MyString
+  released_before: MyString
+  released_now: MyString
+  on_hold: MyString
