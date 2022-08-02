@@ -68,9 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    axlsx_rails (0.6.1)
-      actionpack (>= 3.1)
-      caxlsx (>= 3.0)
+    axlsx_styler (1.1.0)
+      activesupport (>= 3.1)
+      caxlsx (>= 2.0.2)
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -224,14 +224,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  axlsx_rails
+  axlsx_styler
   bootsnap
   capybara
   caxlsx
   debug
   importmap-rails
   jbuilder
-  pg (~> 1.1)
+  pg (~> 1.4)
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
   redis (~> 4.0)
