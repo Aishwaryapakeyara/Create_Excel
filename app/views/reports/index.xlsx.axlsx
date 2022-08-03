@@ -1,18 +1,24 @@
 wb = xlsx_package.workbook
 
 wb.styles do |style|
-  first_heading_cell = style.add_style(bg_color: "CCCC66",b: true, border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :center, :vertical => :center, :wrap_text => true }) 
-  second_heading_cell = style.add_style(bg_color: "99CC99", b: true, border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
-  third_red_cell = style.add_style(fg_color: "FF0000", b: true, bg_color: "FF99FF", border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
-  third_heading_cell = style.add_style(bg_color: "FF99FF", b: true, border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
-  main_heading_cell = style.add_style(bg_color: "A9A9A9", b: true, border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
+  first_heading_cell = style.add_style(bg_color: "CCCC66", b: true, border: Axlsx::STYLE_THIN_BORDER,
+                                       alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
+  second_heading_cell = style.add_style(bg_color: "99CC99", b: true, border: Axlsx::STYLE_THIN_BORDER,
+                                        alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
+  third_red_cell = style.add_style(fg_color: "FF0000", b: true, bg_color: "FF99FF", border: Axlsx::STYLE_THIN_BORDER,
+                                   alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
+  third_heading_cell = style.add_style(bg_color: "FF99FF", b: true, border: Axlsx::STYLE_THIN_BORDER,
+                                       alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
+  main_heading_cell = style.add_style(bg_color: "A9A9A9", b: true, border: Axlsx::STYLE_THIN_BORDER,
+                                      alignment: { horizontal: :center, :vertical => :center, :wrap_text => true })
   text_color = style.add_style(fg_color: "FF0000")
   main_text = style.add_style(b: true)
 
-wb.add_worksheet(name: "Reports") do |sheet| 
-  
-    sheet.add_row ["Current Month - Mar 22"], :style => [ main_text]
-    sheet.add_row ["MTD CLOSED", '', '', '', '', 'Comm', "Comm"],:style => [main_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,third_heading_cell,third_heading_cell,third_heading_cell]
+  wb.add_worksheet(name: "Reports") do |sheet|
+    sheet.add_row ["Current Month - Mar 22"], :style => [main_text]
+    sheet.add_row ["MTD CLOSED", '', '', '', '', 'Comm', "Comm"],
+                  :style => [main_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell,
+                             second_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell]
     sheet.merge_cells "A2:E2"
     sheet.merge_cells "G2:I2"
     sheet.merge_cells "F2:F4"
@@ -21,25 +27,36 @@ wb.add_worksheet(name: "Reports") do |sheet|
     sheet.merge_cells "G3:G4"
     sheet.merge_cells "H3:H4"
     sheet.merge_cells "I3:I4"
-    sheet.add_row ['','','','','','','Released Before','Released Now','On Hold'],:style => [main_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,third_heading_cell,third_red_cell,third_heading_cell]
-    sheet.add_row ["Company Name", "Invoice no.", "Payment Mode", "Payment Date", "Y/N", "", "", "", ""], :style => [first_heading_cell,first_heading_cell,first_heading_cell,first_heading_cell,first_heading_cell,second_heading_cell,third_heading_cell,third_red_cell,third_heading_cell]
+    sheet.add_row ['', '', '', '', '', '', 'Released Before', 'Released Now', 'On Hold'],
+                  :style => [main_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell,
+                             second_heading_cell, third_heading_cell, third_red_cell, third_heading_cell]
+    sheet.add_row ["Company Name", "Invoice no.", "Payment Mode", "Payment Date", "Y/N", "", "", "", ""],
+                  :style => [first_heading_cell, first_heading_cell, first_heading_cell, first_heading_cell, first_heading_cell,
+                             second_heading_cell, third_heading_cell, third_red_cell, third_heading_cell]
     @reports.each do |report|
-    sheet.add_row [report.company_name, report.invoice_no, report.payment_mode, report.payment_date, report.y_n, report.comm, report.released_before, report.released_now, report.on_hold ], :style => [nil, nil, nil, nil, nil, second_heading_cell, text_color, nil, nil]
-
-  end
-  sheet.add_row []
-  sheet.add_row []
-  sheet.add_row []
-  sheet.add_row ["Outstanding Month"]
-    sheet.add_row ["MTD CLOSED", '', '', '', '', '', "Comm"],:style => [main_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,third_heading_cell,third_heading_cell,third_heading_cell, third_heading_cell, third_heading_cell]
+      sheet.add_row [report.company_name, report.invoice_no, report.payment_mode, report.payment_date, report.y_n, report.comm, report.released_before, report.released_now, report.on_hold],
+                    :style => [nil, nil, nil, nil, nil, second_heading_cell, text_color, nil, nil]
+    end
+    sheet.add_row []
+    sheet.add_row []
+    sheet.add_row []
+    sheet.add_row ["Outstanding Month"]
+    sheet.add_row ["MTD CLOSED", '', '', '', '', '', "Comm"],
+                  :style => [main_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell,
+                             second_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell]
     sheet.merge_cells "A11:E11"
     sheet.merge_cells "G11:I11"
-    sheet.add_row ['','','','','','','',''],:style => [main_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,second_heading_cell,third_heading_cell,third_heading_cell,third_heading_cell,third_heading_cell]
+    sheet.add_row ['', '', '', '', '', '', '', ''],
+                  :style => [main_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell, second_heading_cell,
+                             second_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell]
     sheet.merge_cells "A12:E12"
     sheet.merge_cells "G12:I12"
-    sheet.add_row ["Company Name", "Invoice no.", "Payment Mode", "Payment Date", "Y/N", "Comm", "Released Before", "Released Now", "On Hold"], :style => [first_heading_cell,first_heading_cell,first_heading_cell,first_heading_cell,first_heading_cell,second_heading_cell,third_heading_cell,third_heading_cell,third_heading_cell]
+    sheet.add_row ["Company Name", "Invoice no.", "Payment Mode", "Payment Date", "Y/N", "Comm", "Released Before", "Released Now", "On Hold"],
+                  :style => [first_heading_cell, first_heading_cell, first_heading_cell, first_heading_cell, first_heading_cell,
+                             second_heading_cell, third_heading_cell, third_heading_cell, third_heading_cell]
     @reports.each do |report|
-    sheet.add_row [report.company_name, report.invoice_no, report.payment_mode, report.payment_date, report.y_n, report.comm, report.released_before, report.released_now, report.on_hold ], :style => [nil, nil, nil, nil, nil, second_heading_cell, nil, nil, nil]
+      sheet.add_row [report.company_name, report.invoice_no, report.payment_mode, report.payment_date, report.y_n, report.comm, report.released_before, report.released_now, report.on_hold],
+                    :style => [nil, nil, nil, nil, nil, second_heading_cell, nil, nil, nil]
     end
-end
+  end
 end
