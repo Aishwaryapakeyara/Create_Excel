@@ -63,13 +63,13 @@ module ReportModule
       @main_text = style.add_style(b: true, alignment: { horizontal: :center })
     end
 
-    #     def self.header_border(style)
-    #       @border = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
-    #       @main_text_with_border = style.add_style(b: true,
-    #                                                alignment: { horizontal: :center }, border:  Axlsx::STYLE_THIN_BORDER)
-    #       @text_color_with_border = style.add_style(b: true, fg_color: 'FF0000',
-    #                                                 alignment: { horizontal: :center }, border: Axlsx::STYLE_THIN_BORDER)
-    #     end
+    # def self.header_border(style)
+    #   @border = style.add_style(border: Axlsx::STYLE_THIN_BORDER)
+    #   @main_text_with_border = style.add_style(b: true,
+    #                                            alignment: { horizontal: :center }, border:  Axlsx::STYLE_THIN_BORDER)
+    #   @text_color_with_border = style.add_style(b: true, fg_color: 'FF0000',
+    #                                             alignment: { horizontal: :center }, border: Axlsx::STYLE_THIN_BORDER)
+    # end
 
     #     def self.header_styles(style)
     #       @green_col = style.add_style(bg_color: '99CC99', b: true, border: Axlsx::STYLE_THIN_BORDER,
