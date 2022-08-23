@@ -57,13 +57,16 @@ module ReportModule
     end
 
     def total_row(sheet)
-      sheet.add_row ['Total', '', column_sum('RMS New'), column_sum('RMS Renewal'), column_sum('SCCB New'),
-                     column_sum('Duntrade'), column_sum('CS Subscription'), column_sum('CM/TM'), column_sum('Seminar'),
-                     column_sum('S&MS'), column_sum('D&B Hoovers')],
-                    style: [@bold_text_with_l_align, nil, @bold_text_with_r_align, @bold_text_with_r_align,
-                            @bold_text_with_r_align, @b_text_r_align_border, @bold_text_with_r_align,
-                            @bold_text_with_r_align, @bold_text_with_r_align, @bold_text_with_r_align,
-                            @bold_text_with_r_align, @bold_text_with_r_align]
+      row_entry = ['Total', '']
+      @final_sheet_header.drop(1).each do |i|
+        row_entry.append(column_sum(i))
+      end
+      style_arr = [@bold_text_with_l_align, nil]
+      n = row_entry.length - 4
+      2.times { style_arr.push(@bold_text_with_r_align) }
+      style_arr.push(@bold_text_with_r_align_with_border)
+      n.times { style_arr.push(@bold_text_with_r_align) }
+      sheet.add_row row_entry,style: style_arr
     end
 
     def table_data(sheet)
@@ -80,7 +83,7 @@ module ReportModule
     end
 
     def column_sum(col)
-      @people.values.map { |a| a[col] }.sum
+      @people.values.map { |a| a[col].to_i }.sum
     end
 
     def sheet_style(style)
@@ -94,6 +97,8 @@ module ReportModule
                                                border: { style: :thin, color: '000000', edges: [:left] })
       @right_alignment_with_right_border = style.add_style(alignment: { horizontal: :right },
                                                            border: { style: :thin, color: '000000', edges: [:right] })
+      @bold_text_with_r_align_with_border = style.add_style(b: true, alignment: { horizontal: :right },
+                                                            border: { style: :thin, color: '000000', edges: [:right] })
     end
 
     def prepared_hash
@@ -101,7 +106,7 @@ module ReportModule
                                       'Duntrade' => 0, 'CS Subscription' => 0, 'CM/TM' => 0, 'Seminar' => 50,
                                       'S&MS' => 0, 'D&B Hoovers' => 0 },
                 'Sales Person B' => { 'Team/Group' => 'SCCB New', 'RMS New' => 200, 'RMS Renewal' => 0, 'SCCB New' => 600,
-                                      'Duntrade' => 100, 'CS Subscription' => 0, 'CM/TM' => 0, 'Seminar' => 0,
+                                      'Duntrade' => 100, 'Duntrade2' => 100, 'CS Subscription' => 0, 'CM/TM' => 0, 'Seminar' => 0,
                                       'S&MS' => 500, 'D&B Hoovers' => 0 },
                 'Sales Person C' => { 'Team/Group' => 'RMS', 'RMS New' => 0, 'RMS Renewal' => 0, 'SCCB New' => 0,
                                       'Duntrade' => 0, 'CS Subscription' => 0, 'CM/TM' => 0, 'Seminar' => 0,
